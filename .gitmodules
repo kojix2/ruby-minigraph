@@ -1,0 +1,3 @@
+[submodule "minigraph"]
+	path = minigraph
+	url = https://github.com/lh3/minigraph
