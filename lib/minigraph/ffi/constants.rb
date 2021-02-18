@@ -93,7 +93,7 @@ module Minigraph
         :min_cov_blen,     :int
     end
 
-    class GgOpt < ::FFI::Struct
+    class GGOpt < ::FFI::Struct
       layout \
         :flag,             :uint64_t,
         :algo,             :int,
@@ -114,6 +114,81 @@ module Minigraph
         :gape2,            :int8_t,
         :ggs_max_iden,     :float,
         :ggs_min_inv_iden, :float
+    end
+
+    class Idx < ::FFI::Struct
+      layout \
+        :g,                :pointer, # FIXME
+        :b,                :int32_t,
+        :w,                :int32_t,
+        :k,                :int32_t,
+        :flag,             :int32_t,
+        :B,                :pointer # FIXME
+    end
+
+    class LChain < ::FFI::BitStruct
+      layout \
+        :off,              :int32_t,
+        :fields,           :int32_t,
+        :v,                :uint32_t,
+        :rs,               :int32_t,
+        :re,               :int32_t,
+        :qs,               :int32_t,
+        :qe,               :int32_t,
+        :score,            :int32_t,
+        :dist_pre,         :int32_t,
+        :hash_pre,         :uint32_t
+
+      bitfields :fields,
+                :cnt, 31,
+                :inner_pre, 1
+    end
+
+    class LLChain < ::FFI::Struct
+      layout \
+        :off,              :int32_t,
+        :cnt,              :int32_t,
+        :v,                :uint32_t,
+        :score,            :int32_t
+    end
+
+    class GChain < ::FFI::BitStruct
+      layout \
+        :id,               :int32_t,
+        :parent,           :int32_t,
+        :off,              :int32_t,
+        :cnt,              :int32_t,
+        :n_anchor,         :int32_t,
+        :score,            :int32_t,
+        :qs,               :int32_t,
+        :qe,               :int32_t,
+        :plen,             :int32_t,
+        :ps,               :int32_t,
+        :pe,               :int32_t,
+        :blen,             :int32_t,
+        :mlen,             :int32_t,
+        :div,              :float,
+        :hash,             :uint32_t,
+        :subsc,            :int32_t,
+        :n_sub,            :int32_t,
+        :fileds,           :uint32_t
+
+      bitfields :fields,
+                :mapq,   8,
+                :fit,    1,
+                :dummy,  23
+    end
+
+    class GChains < ::FFI::Struct
+      layout \
+        :km,               :pointer,
+        :n_gc,             :int32_t,
+        :n_lc,             :int32_t,
+        :n_a,              :int32_t,
+        :rep_len,          :int32_t,
+        :gc,               :pointer, # FIXME
+        :lc,               :pointer, # FIXME
+        :a,                :pointer  # FIXME
     end
   end
 end
