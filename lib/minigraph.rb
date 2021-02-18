@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 # dependencies
-require "ffi"
+require 'ffi'
 
 # bit fields
-require_relative "minigraph/ffi_helper"
+require_relative 'minigraph/ffi_helper'
 
 # modules
-require_relative "minigraph/version"
+require_relative 'minigraph/version'
 
 # Minigraph
 # https://github.com/lh3/minigraph
@@ -20,15 +20,15 @@ module Minigraph
     attr_accessor :ffi_lib
   end
 
-  lib_name = ::FFI.map_library_name("minigraph")
-  self.ffi_lib = if ENV["MINIGRAPHDIR"]
-                   File.expand_path(lib_name, ENV["MINIGRAPHDIR"])
+  lib_name = ::FFI.map_library_name('minigraph')
+  self.ffi_lib = if ENV['MINIGRAPHDIR']
+                   File.expand_path(lib_name, ENV['MINIGRAPHDIR'])
                  else
                    File.expand_path("../vendor/#{lib_name}", __dir__)
                  end
 
   # friendlier error message
-  autoload :FFI, "minigraph/ffi"
+  autoload :FFI, 'minigraph/ffi'
 
   # methods from mappy
   class << self
