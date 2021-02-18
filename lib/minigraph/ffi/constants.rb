@@ -190,5 +190,11 @@ module Minigraph
         :lc,               :pointer, # FIXME
         :a,                :pointer  # FIXME
     end
+
+    class TBuf < ::FFI::Struct
+      layout \
+        :km,       :pointer,
+        :frag_gap, :int
+    end
   end
 end
