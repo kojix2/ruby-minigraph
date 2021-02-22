@@ -11,32 +11,40 @@ end
 
 task default: :test
 
+def cmd
+  return @cmd if defined? @cmd
+
+  require 'tty-command'
+  @cmd = TTY::Command.new
+end
+
 namespace :minigraph do
   desc 'Compile Minigraph'
   task :build do
-    require 'ffi'
     Dir.chdir('minigraph') do
       # Add -fPIC option to Makefile
-      system 'git apply ../minigraph.patch'
-      system 'make'
+      cmd.run 'git apply ../minigraph.patch'
+      cmd.run 'make'
       case RbConfig::CONFIG['host_os']
       when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
         warn 'windows not supported'
       when /darwin|mac os/
-        system "clang -dynamiclib -undefined dynamic_lookup -o libminigraph.#{FFI::Platform::LIBSUFFIX} *.o"
+        libsuffix = 'dylib'
+        cmd.run 'clang -dynamiclib -undefined dynamic_lookup -o libminigraph.dylib *.o'
       else
-        system 'cc -shared -o libminigraph.so *.o'
+        libsuffix = 'so'
+        cmd.run 'cc -shared -o libminigraph.so *.o'
       end
-      system 'git apply -R ../minigraph.patch'
-      FileUtils.mkdir_p('../vendor')
-      FileUtils.move("libminigraph.#{FFI::Platform::LIBSUFFIX}", "../vendor/libminigraph.#{FFI::Platform::LIBSUFFIX}")
+      cmd.run 'git apply -R ../minigraph.patch'
+      cmd.run 'mkdir -p ../vendor'
+      cmd.run "mv libminigraph.#{libsuffix} ../vendor/libminigraph.#{libsuffix}"
     end
   end
 
   desc 'Cleanup'
   task :clean do
     Dir.chdir('minigraph') do
-      system 'make clean'
+      cmd.run 'make clean'
     end
   end
 end
@@ -47,7 +55,7 @@ namespace :c2ffi do
     FileUtils.mkdir_p('codegen')
     header_files = FileList['minigraph/**/*.h']
     header_files.each do |file|
-      system "c2ffi #{file}" \
+      cmd.run "c2ffi #{file}" \
              " -o codegen/#{File.basename(file, '.h')}.json"
     end
   end
