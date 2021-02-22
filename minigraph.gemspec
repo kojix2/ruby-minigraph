@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ['kojix2']
   spec.email         = ['2xijok@gmail.com']
 
-  spec.summary       = 'minigraph'
-  spec.description   = 'minigraph'
+  spec.summary       = 'Ruby bindings for minigraph'
+  spec.description   = 'Ruby bindings for minigraph (bioinformatics)'
   spec.homepage      = 'https://github.com/kojix2/ruby-minigraph'
   spec.license       = 'MIT'
   spec.required_ruby_version = '>= 2.5'
