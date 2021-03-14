@@ -11,7 +11,7 @@
 You need to install it from the source code. Because you need to build minigraph and create a shared library. Open your terminal and type the following commands in order. 
 
 ```sh
-git clone --recurse-submodules https://github.com/kojix2/ruby-minigraph
+git clone --recursive https://github.com/kojix2/ruby-minigraph
 cd ruby-minigraph
 bundle install
 bundle exec rake minigraph:build
@@ -35,7 +35,7 @@ require "minigraph"
 ## Development
 
 ```sh
-git clone --recurse-submodules https://github.com/kojix2/ruby-minigraph
+git clone --recursive https://github.com/kojix2/ruby-minigraph
 # git clone https://github.com/kojix2/ruby-minigraph
 # cd ruby-minigraph
 # git submodule update -i
