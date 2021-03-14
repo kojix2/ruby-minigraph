@@ -30,7 +30,6 @@ module Minigraph
   # friendlier error message
   autoload :FFI, 'minigraph/ffi'
 
-  # methods from mappy
   class << self
   end
 end

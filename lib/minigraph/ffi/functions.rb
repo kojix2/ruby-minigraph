@@ -42,7 +42,7 @@ module Minigraph
 
     attach_function \
       :mg_map,
-      [Idx.by_ref, :int, :string, TBuf.by_ref, MapOpt.by_ref, :string], # FIXME
+      [Idx.by_ref, :int, :string, TBuf.by_ref, MapOpt.by_ref, :string],
       GChains.by_ref
 
     attach_function \
@@ -53,13 +53,13 @@ module Minigraph
     # high-level mapping APIs
     attach_function \
       :mg_map_files,
-      [:pointer, :int, :pointer, IdxOpt.by_ref, MapOpt.by_ref, :int], # FIXME
+      [:pointer, :int, :pointer, IdxOpt.by_ref, MapOpt.by_ref, :int], # FIXME gfa_t
       :int
 
     # graph generation
     attach_function \
       :mg_ggen,
-      [:pointer, :int32_t, :pointer, IdxOpt.by_ref, MapOpt.by_ref, GGOpt.by_ref, :int], # FIXME
+      [:pointer, :int32_t, :pointer, IdxOpt.by_ref, MapOpt.by_ref, GGOpt.by_ref, :int], # FIXME gfa_t
       :int
   end
 end

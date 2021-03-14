@@ -118,12 +118,12 @@ module Minigraph
 
     class Idx < ::FFI::Struct
       layout \
-        :g,                :pointer, # FIXME
+        :g,                :pointer, # const gfa_t *g
         :b,                :int32_t,
         :w,                :int32_t,
         :k,                :int32_t,
         :flag,             :int32_t,
-        :B,                :pointer # FIXME
+        :B,                :pointer  # mg_idx_bucket_s *B
     end
 
     class LChain < ::FFI::BitStruct
@@ -186,9 +186,9 @@ module Minigraph
         :n_lc,             :int32_t,
         :n_a,              :int32_t,
         :rep_len,          :int32_t,
-        :gc,               :pointer, # FIXME
-        :lc,               :pointer, # FIXME
-        :a,                :pointer  # FIXME
+        :gc,               :pointer, # FIXME mg_gchain_t
+        :lc,               :pointer, # FIXME mg_llchain_t
+        :a,                :pointer  # FIXME mg128_t
     end
 
     class TBuf < ::FFI::Struct
