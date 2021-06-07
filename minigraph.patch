@@ -1,5 +1,5 @@
 diff --git a/Makefile b/Makefile
-index e58b230..7229042 100644
+index f1ca802..2733356 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -1,5 +1,5 @@
@@ -8,4 +8,4 @@ index e58b230..7229042 100644
 +CFLAGS=		-g -Wall -Wc++-compat -std=c99 -O2 -fPIC
  CPPFLAGS=
  INCLUDES=
- OBJS=		kalloc.o kthread.o algo.o sys.o gfa-base.o gfa-io.o gfa-aug.o bubble.o \
+ OBJS=		kalloc.o kthread.o algo.o sys.o gfa-base.o gfa-io.o gfa-aug.o gfa-bbl.o \
