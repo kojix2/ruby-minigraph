@@ -3,6 +3,18 @@
 require 'bundler/gem_tasks'
 require 'rake/testtask'
 
+# Prevent releasing the gem including htslib shared library.
+
+task :check_shared_library_exist do
+  unless Dir.glob("vendor/*.{so,dylib,dll}").empty?
+    magenta = "\e[35m"
+    clear = "\e[0m"
+    abort "#{magenta}Shared library exists in the vendor directory.#{clear}"
+  end
+end
+
+Rake::Task["release:guard_clean"].enhance(["check_shared_library_exist"])
+
 Rake::TestTask.new(:test) do |t|
   t.libs << 'test'
   t.libs << 'lib'
@@ -11,59 +23,4 @@ end
 
 task default: :test
 
-def cmd
-  return @cmd if defined? @cmd
-
-  require 'tty-command'
-  @cmd = TTY::Command.new
-end
-
-namespace :minigraph do
-  desc 'Compile Minigraph'
-  task :build do
-    Dir.chdir('minigraph') do
-      # Add -fPIC option to Makefile
-      cmd.run 'git apply ../minigraph.patch'
-      cmd.run 'make'
-      case RbConfig::CONFIG['host_os']
-      when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
-        warn 'windows not supported'
-      when /darwin|mac os/
-        libsuffix = 'dylib'
-        cmd.run 'clang -dynamiclib -undefined dynamic_lookup -o libminigraph.dylib *.o'
-      else
-        libsuffix = 'so'
-        cmd.run 'cc -shared -o libminigraph.so *.o'
-      end
-      cmd.run 'git apply -R ../minigraph.patch'
-      cmd.run 'mkdir -p ../vendor'
-      cmd.run "mv libminigraph.#{libsuffix} ../vendor/libminigraph.#{libsuffix}"
-    end
-  end
-
-  desc 'Cleanup'
-  task :clean do
-    Dir.chdir('minigraph') do
-      cmd.run 'make clean'
-    end
-  end
-end
-
-namespace :c2ffi do
-  desc 'Generate metadata files (JSON format) using c2ffi'
-  task :generate do
-    FileUtils.mkdir_p('codegen')
-    header_files = FileList['minigraph/**/*.h']
-    header_files.each do |file|
-      cmd.run "c2ffi #{file}" \
-             " -o codegen/#{File.basename(file, '.h')}.json"
-    end
-  end
-
-  desc 'Remove metadata files'
-  task :remove do
-    FileList['codegen/native_functions/*.json'].each do |path|
-      File.unlink(path) if File.exist?(path)
-    end
-  end
-end
+load "ext/Rakefile"

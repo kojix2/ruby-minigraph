@@ -1,0 +1,55 @@
+# frozen_string_literal: true
+
+require 'rake'
+require 'fileutils'
+require 'ffi'
+
+minigraph_dir = File.expand_path("minigraph", __dir__)
+target_dir = "../../vendor"
+target_fname = FFI.map_library_name("minigraph")
+target_path = File.join(target_dir, target_fname)
+
+task default: ["minigraph:build", "minigraph:clean"]
+
+
+namespace :minigraph do
+  desc 'Compile Minigraph'
+  task :build do
+    Dir.chdir(minigraph_dir) do
+      # Add -fPIC option to Makefile
+      sh 'git apply ../minigraph.patch'
+      # case RbConfig::CONFIG["host_cpu"]
+      sh 'make'
+      # end
+      case RbConfig::CONFIG['host_os']
+      when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+        warn 'windows not supported'
+        sh "cc *.o -shared -o #{target_fname}"
+      when /darwin|mac os/
+        sh "clang -dynamiclib -undefined dynamic_lookup -o #{target_fname} *.o"
+        sh "otool -L #{target_fname}"
+      else
+        sh "cc -shared -o #{target_fname} *.o"
+        sh "ldd -r #{target_fname}"
+      end
+      sh 'git apply -R ../minigraph.patch'
+      FileUtils.mkdir_p(target_dir)
+      warn "mkdir -p #{target_dir}"
+      sh "mv #{target_fname} #{target_path}"
+    end
+  end
+
+  desc 'make clean'
+  task :clean do
+    Dir.chdir(minigraph_dir) do
+      sh 'make clean'
+    end
+  end
+
+  desc "`make clean` and remove shared lib"
+  task cleanall: [:clean] do
+    Dir.chdir(minimap2_dir) do
+      sh "rm #{target_path}" if File.exist?(target_path)
+    end
+  end
+end
