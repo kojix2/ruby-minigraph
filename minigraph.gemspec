@@ -3,7 +3,7 @@
 require_relative "lib/minigraph/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "minigraph"
+  spec.name          = "ruby-minigraph"
   spec.version       = Minigraph::VERSION
   spec.authors       = ["kojix2"]
   spec.email         = ["2xijok@gmail.com"]
