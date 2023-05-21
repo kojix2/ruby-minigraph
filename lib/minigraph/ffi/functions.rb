@@ -52,7 +52,7 @@ module Minigraph
 
     attach_function \
       :mg_map_frag,
-      [Idx.by_ref, :int, :pointer, :pointer, :pointer, TBuf.by_ref, MapOpt.by_ref, :string],
+      [Idx.by_ref, :int, :pointer, :pointer, GChains.by_ref, TBuf.by_ref, MapOpt.by_ref, :string],
       :void
 
     # high-level mapping APIs
