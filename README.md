@@ -1,6 +1,9 @@
 # ruby-minigraph
 
-[![CI](https://github.com/kojix2/ruby-minigraph/workflows/CI/badge.svg)](https://github.com/kojix2/ruby-minigraph/actions)
+[![Gem Version](https://badge.fury.io/rb/ruby-minigraph.svg)](https://badge.fury.io/rb/ruby-minigraph)
+[![test](https://github.com/kojix2/ruby-minigraph/actions/workflows/ci.yml/badge.svg)](https://github.com/kojix2/ruby-minigraph/actions/workflows/ci.yml)
+[![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://kojix2.github.io/ruby-minigraph/)
+[![The MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
 
 :curly_loop: [minigraph](https://github.com/lh3/minigraph) - the sequence-to-graph mapper - for [Ruby](https://github.com/ruby/ruby)
 
