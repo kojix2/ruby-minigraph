@@ -1,4 +1,4 @@
-# minigraph
+# ruby-minigraph
 
 [![CI](https://github.com/kojix2/ruby-minigraph/workflows/CI/badge.svg)](https://github.com/kojix2/ruby-minigraph/actions)
 
