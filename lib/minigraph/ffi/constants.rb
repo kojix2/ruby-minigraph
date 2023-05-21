@@ -140,8 +140,8 @@ module Minigraph
         :hash_pre,         :uint32
 
       bit_fields :fields,
-                :cnt, 31,
-                :inner_pre, 1
+                 :cnt, 31,
+                 :inner_pre, 1
     end
 
     class LLChain < ::FFI::Struct
@@ -174,9 +174,9 @@ module Minigraph
         :fileds,           :uint32
 
       bit_fields :fields,
-                :mapq,   8,
-                :fit,    1,
-                :dummy,  23
+                 :mapq,   8,
+                 :fit,    1,
+                 :dummy,  23
     end
 
     class GChains < ::FFI::Struct
