@@ -4,6 +4,7 @@
 [![test](https://github.com/kojix2/ruby-minigraph/actions/workflows/ci.yml/badge.svg)](https://github.com/kojix2/ruby-minigraph/actions/workflows/ci.yml)
 [![Docs Latest](https://img.shields.io/badge/docs-latest-blue.svg)](https://kojix2.github.io/ruby-minigraph/)
 [![The MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.txt)
+[![DOI](https://zenodo.org/badge/339645970.svg)](https://zenodo.org/badge/latestdoi/339645970)
 
 :curly_loop: [minigraph](https://github.com/lh3/minigraph) - the sequence-to-graph mapper - for [Ruby](https://github.com/ruby/ruby)
 
