@@ -24,12 +24,12 @@ namespace :minigraph do
       case RbConfig::CONFIG["host_os"]
       when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
         warn "windows not supported"
-        sh "cc *.o -shared -o #{target_fname}"
+        sh "cc *.o -shared -o #{target_fname} -lm -lz -lpthread"
       when /darwin|mac os/
-        sh "clang -dynamiclib -undefined dynamic_lookup -o #{target_fname} *.o"
+        sh "clang -dynamiclib -undefined dynamic_lookup -o #{target_fname} *.o -lm -lz -lpthread"
         sh "otool -L #{target_fname}"
       else
-        sh "cc -shared -o #{target_fname} *.o"
+        sh "cc *.o -shared -o #{target_fname} -lm -lz -lpthread"
         sh "ldd -r #{target_fname}"
       end
       sh "rm cmappy.h cmappy.c"
