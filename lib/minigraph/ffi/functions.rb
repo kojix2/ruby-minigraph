@@ -2,6 +2,11 @@
 
 module Minigraph
   module FFI
+    attach_function \
+      :main,
+      %i[int pointer],
+      :int
+
     # options
     attach_function \
       :mg_opt_set,

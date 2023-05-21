@@ -17,6 +17,7 @@ namespace :minigraph do
     Dir.chdir(minigraph_dir) do
       # Add -fPIC option to Makefile
       sh "git apply ../minigraph.patch"
+      sh "cp ../cmappy/cmappy.h ../cmappy/cmappy.c ."
       # case RbConfig::CONFIG["host_cpu"]
       sh "make"
       # end
@@ -31,6 +32,7 @@ namespace :minigraph do
         sh "cc -shared -o #{target_fname} *.o"
         sh "ldd -r #{target_fname}"
       end
+      sh "rm cmappy.h cmappy.c"
       sh "git apply -R ../minigraph.patch"
       FileUtils.mkdir_p(target_dir)
       warn "mkdir -p #{target_dir}"
@@ -47,7 +49,7 @@ namespace :minigraph do
 
   desc "`make clean` and remove shared lib"
   task cleanall: [:clean] do
-    Dir.chdir(minimap2_dir) do
+    Dir.chdir(minigraph_dir) do
       sh "rm #{target_path}" if File.exist?(target_path)
     end
   end

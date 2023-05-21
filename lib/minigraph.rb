@@ -31,5 +31,45 @@ module Minigraph
   autoload :FFI, "minigraph/ffi"
 
   class << self
+    # Execute minigraph comannd with given options.
+    # @overload  execute(arg0,arg1,...)
+    # @param [String] arg minigraph command option.
+    # @example Get minigraph version
+    #   Minigraph.execute('--version')
+
+    def execute(*rb_argv)
+      str_ptrs = []
+      # First argument is the program name.
+      str_ptrs << ::FFI::MemoryPointer.from_string("minigraph")
+      rb_argv.each do |arg|
+        arg.to_s.split(/\s+/).each do |s|
+          str_ptrs << ::FFI::MemoryPointer.from_string(s)
+        end
+      end
+      str_ptrs << nil
+
+      # Load all the pointers into a native memory block
+      argv = ::FFI::MemoryPointer.new(:pointer, str_ptrs.length)
+      str_ptrs.each_with_index do |p, i|
+        argv[i].put_pointer(0, p)
+      end
+
+      FFI.main(str_ptrs.length - 1, argv)
+    end
+
+    # Get verbosity level.
+    # @return [Integer] verbosity level.
+
+    def verbose
+      FFI.mg_verbose_level(-1)
+    end
+
+    # Set verbosity level.
+    # @param [Integer] verbosity level
+    # @return [Integer] verbosity level.
+
+    def verbose=(level)
+      FFI.mg_verbose_level(level)
+    end
   end
 end

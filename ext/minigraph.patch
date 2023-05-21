@@ -1,11 +1,21 @@
-diff --git a/Makefile b/Makefile
-index f1ca802..2733356 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -1,5 +1,5 @@
+@@ -1,11 +1,11 @@
  CC=			gcc
 -CFLAGS=		-g -Wall -Wc++-compat -std=c99 -O2
 +CFLAGS=		-g -Wall -Wc++-compat -std=c99 -O2 -fPIC
  CPPFLAGS=
  INCLUDES=
  OBJS=		kalloc.o kthread.o algo.o sys.o gfa-base.o gfa-io.o gfa-aug.o gfa-bbl.o \
+             sketch.o misc.o bseq.o options.o fastcmp.o shortk.o \
+ 			index.o lchain.o gchain1.o gcmisc.o map-algo.o cal_cov.o \
+-			format.o gmap.o ksw2_extd2_sse.o ggsimple.o ggen.o asm-call.o
++			format.o gmap.o ksw2_extd2_sse.o ggsimple.o ggen.o asm-call.o cmappy.o
+ PROG=		minigraph
+ LIBS=		-lz -lpthread -lm
+ 
+@@ -62,3 +62,4 @@ options.o: mgpriv.h minigraph.h gfa.h sys.h
+ shortk.o: mgpriv.h minigraph.h gfa.h ksort.h kavl.h algo.h khash.h kalloc.h
+ sketch.o: kvec.h kalloc.h mgpriv.h minigraph.h gfa.h
+ sys.o: sys.h
++cmappy.o: cmappy.h
