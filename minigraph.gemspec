@@ -3,7 +3,7 @@
 require_relative "lib/minigraph/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "ruby-minigraph"
+  spec.name          = "minigraph"
   spec.version       = Minigraph::VERSION
   spec.authors       = ["kojix2"]
   spec.email         = ["2xijok@gmail.com"]
@@ -16,6 +16,8 @@ Gem::Specification.new do |spec|
 
   spec.files         = Dir["*.{md,txt}", "{lib}/**/*", "vendor/libminigraph.{so,dylib}"]
   spec.require_paths = ["lib"]
+
+  spec.extensions    = %w[ext/Rakefile]
 
   spec.add_dependency "ffi"
   spec.add_dependency "ffi-bitfield"
