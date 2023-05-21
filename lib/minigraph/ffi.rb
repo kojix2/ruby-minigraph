@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # bit fields
-require_relative 'ffi_helper'
+require_relative "ffi_helper"
 
 module Minigraph
   # Native APIs
@@ -22,5 +22,5 @@ module Minigraph
   end
 end
 
-require_relative 'ffi/constants'
-require_relative 'ffi/functions'
+require_relative "ffi/constants"
+require_relative "ffi/functions"

@@ -53,13 +53,13 @@ module Minigraph
     # high-level mapping APIs
     attach_function \
       :mg_map_files,
-      [:pointer, :int, :pointer, IdxOpt.by_ref, MapOpt.by_ref, :int], # FIXME gfa_t
+      [:pointer, :int, :pointer, IdxOpt.by_ref, MapOpt.by_ref, :int], # FIXME: gfa_t
       :int
 
     # graph generation
     attach_function \
       :mg_ggen,
-      [:pointer, :int32_t, :pointer, IdxOpt.by_ref, MapOpt.by_ref, GGOpt.by_ref, :int], # FIXME gfa_t
+      [:pointer, :int32_t, :pointer, IdxOpt.by_ref, MapOpt.by_ref, GGOpt.by_ref, :int], # FIXME: gfa_t
       :int
   end
 end

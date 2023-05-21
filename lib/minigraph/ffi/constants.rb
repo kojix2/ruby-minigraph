@@ -186,9 +186,9 @@ module Minigraph
         :n_lc,             :int32_t,
         :n_a,              :int32_t,
         :rep_len,          :int32_t,
-        :gc,               :pointer, # FIXME mg_gchain_t
-        :lc,               :pointer, # FIXME mg_llchain_t
-        :a,                :pointer  # FIXME mg128_t
+        :gc,               :pointer, # FIXME: mg_gchain_t
+        :lc,               :pointer, # FIXME: mg_llchain_t
+        :a,                :pointer  # FIXME: mg128_t
     end
 
     class TBuf < ::FFI::Struct
