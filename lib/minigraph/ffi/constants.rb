@@ -24,6 +24,7 @@ module Minigraph
     M_WRITE_LCHAIN = 0x800000
     M_WRITE_MZ     = 0x1000000
     M_SKIP_GCHECK  = 0x2000000
+    M_CIGAR        = 0x4000000
 
     G_NONE         = 0
     G_GGSIMPLE     = 1
@@ -34,18 +35,32 @@ module Minigraph
     G_CALL         = 0x8
 
     # emulate 128-bit integers
-    class MM128 < ::FFI::Struct
+    class MG128 < ::FFI::Struct
       layout \
         :x, :uint64_t,
         :y, :uint64_t
     end
 
     # emulate 128-bit arrays
-    class MM128V < ::FFI::Struct
+    class MG128V < ::FFI::Struct
       layout \
         :n, :size_t,
         :m, :size_t,
-        :a, MM128.ptr
+        :a, MG128.ptr
+    end
+
+    class MG32V < ::FFI::Struct
+      layout \
+        :n, :int32,
+        :m, :int32,
+        :a, :pointer
+    end
+
+    class MG64V < ::FFI::Struct
+      layout \
+        :n, :int32,
+        :m, :int32,
+        :a, :pointer
     end
 
     # indexing option
@@ -65,9 +80,12 @@ module Minigraph
         :pe_ori,           :int,
         :occ_max1,         :int,
         :occ_max1_cap,     :int,
-        :occ_weight,       :int,
         :occ_max1_frac,    :float,
         :bw,               :int,
+        :bw_long,          :int,
+        :rmq_size_cap,     :int,
+        :rmq_rescue_size,  :int,
+        :rmq_rescue_ratio, :float,
         :max_gap_pre,      :int,
         :max_gap,          :int,
         :max_gap_ref,      :int,
@@ -78,17 +96,19 @@ module Minigraph
         :max_lc_skip,      :int,
         :max_lc_iter,      :int,
         :max_gc_skip,      :int,
-        :max_rmq_size,     :int,
         :min_lc_cnt,       :int,
         :min_lc_score,     :int,
         :min_gc_cnt,       :int,
         :min_gc_score,     :int,
+        :gdp_max_ed,       :int,
+        :lc_max_trim,      :int,
+        :lc_max_occ,       :int,
         :mask_level,       :float,
         :sub_diff,         :int,
         :best_n,           :int,
         :pri_ratio,        :float,
         :ref_bonus,        :int,
-        :max_gc_seq_ext,   :int,
+        :cap_kalloc,       :int64_t,
         :min_cov_mapq,     :int,
         :min_cov_blen,     :int
     end
@@ -119,10 +139,12 @@ module Minigraph
     class Idx < ::FFI::Struct
       layout \
         :g,                :pointer, # const gfa_t *g
+        :es,               :pointer, # gfa_edseq_t *es;
         :b,                :int32,
         :w,                :int32,
         :k,                :int32,
         :flag,             :int32,
+        :n_seq,            :int32,
         :B,                :pointer  # mg_idx_bucket_s *B
     end
 
@@ -149,7 +171,19 @@ module Minigraph
         :off,              :int32,
         :cnt,              :int32,
         :v,                :uint32,
-        :score,            :int32
+        :score,            :int32,
+        :ed,               :int32
+    end
+
+    class Cigar < ::FFI::Struct
+      layout \
+        :n_cigar,          :int32,
+        :mlen,             :int32,
+        :blen,             :int32,
+        :aplen,            :int32,
+        :ss,               :int32,
+        :ee,               :int32,
+        :cigar,            :pointer # uint64_t cigar[]
     end
 
     class GChain < ::FFI::BitStruct
@@ -171,7 +205,8 @@ module Minigraph
         :hash,             :uint32,
         :subsc,            :int32,
         :n_sub,            :int32,
-        :fileds,           :uint32
+        :fileds,           :uint32,
+        :p,                Cigar.ptr
 
       bit_fields :fields,
                  :mapq,   8,
