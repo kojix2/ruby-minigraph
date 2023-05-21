@@ -84,7 +84,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/minigraph/ffi.rb<span class="defines">,<br />
-  lib/minigraph/ffi/mappy.rb,<br /> lib/minigraph/ffi/functions.rb</span>
+  lib/minigraph/ffi/mappy.rb,<br /> lib/minigraph/ffi/constants.rb,<br /> lib/minigraph/ffi/functions.rb</span>
 </dd>
   </dl>
   
@@ -101,7 +101,173 @@
 <div class="tags">
   
 
-</div>
+</div><h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="FFI/Cigar.html" title="Minigraph::FFI::Cigar (class)">Cigar</a></span>, <span class='object_link'><a href="FFI/GChain.html" title="Minigraph::FFI::GChain (class)">GChain</a></span>, <span class='object_link'><a href="FFI/GChains.html" title="Minigraph::FFI::GChains (class)">GChains</a></span>, <span class='object_link'><a href="FFI/GGOpt.html" title="Minigraph::FFI::GGOpt (class)">GGOpt</a></span>, <span class='object_link'><a href="FFI/Idx.html" title="Minigraph::FFI::Idx (class)">Idx</a></span>, <span class='object_link'><a href="FFI/IdxOpt.html" title="Minigraph::FFI::IdxOpt (class)">IdxOpt</a></span>, <span class='object_link'><a href="FFI/LChain.html" title="Minigraph::FFI::LChain (class)">LChain</a></span>, <span class='object_link'><a href="FFI/LLChain.html" title="Minigraph::FFI::LLChain (class)">LLChain</a></span>, <span class='object_link'><a href="FFI/MG128.html" title="Minigraph::FFI::MG128 (class)">MG128</a></span>, <span class='object_link'><a href="FFI/MG128V.html" title="Minigraph::FFI::MG128V (class)">MG128V</a></span>, <span class='object_link'><a href="FFI/MG32V.html" title="Minigraph::FFI::MG32V (class)">MG32V</a></span>, <span class='object_link'><a href="FFI/MG64V.html" title="Minigraph::FFI::MG64V (class)">MG64V</a></span>, <span class='object_link'><a href="FFI/MapOpt.html" title="Minigraph::FFI::MapOpt (class)">MapOpt</a></span>, <span class='object_link'><a href="FFI/TBuf.html" title="Minigraph::FFI::TBuf (class)">TBuf</a></span>
+    
+  
+</p>
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="M_SPLICE-constant" class="">M_SPLICE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x10</span></pre></dd>
+      
+        <dt id="M_SR-constant" class="">M_SR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x20</span></pre></dd>
+      
+        <dt id="M_FRAG_MODE-constant" class="">M_FRAG_MODE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x40</span></pre></dd>
+      
+        <dt id="M_FRAG_MERGE-constant" class="">M_FRAG_MERGE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x80</span></pre></dd>
+      
+        <dt id="M_FOR_ONLY-constant" class="">M_FOR_ONLY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x100</span></pre></dd>
+      
+        <dt id="M_REV_ONLY-constant" class="">M_REV_ONLY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x200</span></pre></dd>
+      
+        <dt id="M_HEAP_SORT-constant" class="">M_HEAP_SORT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x400</span></pre></dd>
+      
+        <dt id="M_VERTEX_COOR-constant" class="">M_VERTEX_COOR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x800</span></pre></dd>
+      
+        <dt id="M_ALL_CHAINS-constant" class="">M_ALL_CHAINS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x1000</span></pre></dd>
+      
+        <dt id="M_PRINT_2ND-constant" class="">M_PRINT_2ND =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x2000</span></pre></dd>
+      
+        <dt id="M_CAL_COV-constant" class="">M_CAL_COV =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x4000</span></pre></dd>
+      
+        <dt id="M_RMQ-constant" class="">M_RMQ =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x8000</span></pre></dd>
+      
+        <dt id="M_COPY_COMMENT-constant" class="">M_COPY_COMMENT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x10000</span></pre></dd>
+      
+        <dt id="M_INDEPEND_SEG-constant" class="">M_INDEPEND_SEG =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x20000</span></pre></dd>
+      
+        <dt id="M_NO_QUAL-constant" class="">M_NO_QUAL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x40000</span></pre></dd>
+      
+        <dt id="M_2_IO_THREADS-constant" class="">M_2_IO_THREADS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x80000</span></pre></dd>
+      
+        <dt id="M_SHOW_UNMAP-constant" class="">M_SHOW_UNMAP =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x100000</span></pre></dd>
+      
+        <dt id="M_NO_COMP_PATH-constant" class="">M_NO_COMP_PATH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x200000</span></pre></dd>
+      
+        <dt id="M_NO_DIAG-constant" class="">M_NO_DIAG =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x400000</span></pre></dd>
+      
+        <dt id="M_WRITE_LCHAIN-constant" class="">M_WRITE_LCHAIN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x800000</span></pre></dd>
+      
+        <dt id="M_WRITE_MZ-constant" class="">M_WRITE_MZ =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x1000000</span></pre></dd>
+      
+        <dt id="M_SKIP_GCHECK-constant" class="">M_SKIP_GCHECK =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x2000000</span></pre></dd>
+      
+        <dt id="M_CIGAR-constant" class="">M_CIGAR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x4000000</span></pre></dd>
+      
+        <dt id="G_NONE-constant" class="">G_NONE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0</span></pre></dd>
+      
+        <dt id="G_GGSIMPLE-constant" class="">G_GGSIMPLE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>1</span></pre></dd>
+      
+        <dt id="G_NO_QOVLP-constant" class="">G_NO_QOVLP =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x1</span></pre></dd>
+      
+        <dt id="G_CAL_COV-constant" class="">G_CAL_COV =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x2</span></pre></dd>
+      
+        <dt id="G_NO_INV-constant" class="">G_NO_INV =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x4</span></pre></dd>
+      
+        <dt id="G_CALL-constant" class="">G_CALL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>0x8</span></pre></dd>
+      
+    </dl>
+  
+
 
 
 
@@ -200,7 +366,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sun May 21 11:57:08 2023 by
+  Generated on Sun May 21 11:59:30 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>
