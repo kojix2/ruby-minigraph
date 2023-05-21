@@ -14,7 +14,8 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
   spec.required_ruby_version = ">= 2.5"
 
-  spec.files         = Dir["*.{md,txt}", "{lib}/**/*", "vendor/libminigraph.{so,dylib}"]
+  spec.files         = (Dir["*.{md,txt}", "{lib,ext}/**/*", "vendor/libminigraph.{so,dylib,dll}"] -
+                        Dir["ext/minigraph/lib/**/*"])
   spec.require_paths = ["lib"]
 
   spec.extensions    = %w[ext/Rakefile]
