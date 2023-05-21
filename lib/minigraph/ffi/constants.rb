@@ -119,25 +119,25 @@ module Minigraph
     class Idx < ::FFI::Struct
       layout \
         :g,                :pointer, # const gfa_t *g
-        :b,                :int32_t,
-        :w,                :int32_t,
-        :k,                :int32_t,
-        :flag,             :int32_t,
+        :b,                :int32,
+        :w,                :int32,
+        :k,                :int32,
+        :flag,             :int32,
         :B,                :pointer  # mg_idx_bucket_s *B
     end
 
     class LChain < ::FFI::BitStruct
       layout \
-        :off,              :int32_t,
-        :fields,           :int32_t,
-        :v,                :uint32_t,
-        :rs,               :int32_t,
-        :re,               :int32_t,
-        :qs,               :int32_t,
-        :qe,               :int32_t,
-        :score,            :int32_t,
-        :dist_pre,         :int32_t,
-        :hash_pre,         :uint32_t
+        :off,              :int32,
+        :fields,           :int32,
+        :v,                :uint32,
+        :rs,               :int32,
+        :re,               :int32,
+        :qs,               :int32,
+        :qe,               :int32,
+        :score,            :int32,
+        :dist_pre,         :int32,
+        :hash_pre,         :uint32
 
       bitfields :fields,
                 :cnt, 31,
@@ -146,32 +146,32 @@ module Minigraph
 
     class LLChain < ::FFI::Struct
       layout \
-        :off,              :int32_t,
-        :cnt,              :int32_t,
-        :v,                :uint32_t,
-        :score,            :int32_t
+        :off,              :int32,
+        :cnt,              :int32,
+        :v,                :uint32,
+        :score,            :int32
     end
 
     class GChain < ::FFI::BitStruct
       layout \
-        :id,               :int32_t,
-        :parent,           :int32_t,
-        :off,              :int32_t,
-        :cnt,              :int32_t,
-        :n_anchor,         :int32_t,
-        :score,            :int32_t,
-        :qs,               :int32_t,
-        :qe,               :int32_t,
-        :plen,             :int32_t,
-        :ps,               :int32_t,
-        :pe,               :int32_t,
-        :blen,             :int32_t,
-        :mlen,             :int32_t,
+        :id,               :int32,
+        :parent,           :int32,
+        :off,              :int32,
+        :cnt,              :int32,
+        :n_anchor,         :int32,
+        :score,            :int32,
+        :qs,               :int32,
+        :qe,               :int32,
+        :plen,             :int32,
+        :ps,               :int32,
+        :pe,               :int32,
+        :blen,             :int32,
+        :mlen,             :int32,
         :div,              :float,
-        :hash,             :uint32_t,
-        :subsc,            :int32_t,
-        :n_sub,            :int32_t,
-        :fileds,           :uint32_t
+        :hash,             :uint32,
+        :subsc,            :int32,
+        :n_sub,            :int32,
+        :fileds,           :uint32
 
       bitfields :fields,
                 :mapq,   8,
@@ -182,10 +182,10 @@ module Minigraph
     class GChains < ::FFI::Struct
       layout \
         :km,               :pointer,
-        :n_gc,             :int32_t,
-        :n_lc,             :int32_t,
-        :n_a,              :int32_t,
-        :rep_len,          :int32_t,
+        :n_gc,             :int32,
+        :n_lc,             :int32,
+        :n_a,              :int32,
+        :rep_len,          :int32,
         :gc,               :pointer, # FIXME: mg_gchain_t
         :lc,               :pointer, # FIXME: mg_llchain_t
         :a,                :pointer  # FIXME: mg128_t

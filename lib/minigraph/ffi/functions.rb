@@ -64,7 +64,7 @@ module Minigraph
     # graph generation
     attach_function \
       :mg_ggen,
-      [:pointer, :int32_t, :pointer, IdxOpt.by_ref, MapOpt.by_ref, GGOpt.by_ref, :int], # FIXME: gfa_t
+      [:pointer, :int32, :pointer, IdxOpt.by_ref, MapOpt.by_ref, GGOpt.by_ref, :int], # FIXME: gfa_t
       :int
   end
 end
