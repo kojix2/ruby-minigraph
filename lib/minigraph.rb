@@ -3,9 +3,6 @@
 # dependencies
 require "ffi"
 
-# bit fields
-require_relative "minigraph/ffi_helper"
-
 # modules
 require_relative "minigraph/version"
 

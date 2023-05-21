@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # bit fields
-require_relative "ffi_helper"
+require "ffi/bit_struct"
 
 module Minigraph
   # Native APIs

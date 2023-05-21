@@ -139,7 +139,7 @@ module Minigraph
         :dist_pre,         :int32,
         :hash_pre,         :uint32
 
-      bitfields :fields,
+      bit_fields :fields,
                 :cnt, 31,
                 :inner_pre, 1
     end
@@ -173,7 +173,7 @@ module Minigraph
         :n_sub,            :int32,
         :fileds,           :uint32
 
-      bitfields :fields,
+      bit_fields :fields,
                 :mapq,   8,
                 :fit,    1,
                 :dummy,  23
