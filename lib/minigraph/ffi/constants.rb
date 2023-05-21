@@ -66,9 +66,9 @@ module Minigraph
     # indexing option
     class IdxOpt < ::FFI::Struct
       layout \
-        :k,               :short,
-        :w,               :short,
-        :bucket_bits,     :short
+        :k,               :int,
+        :w,               :int,
+        :bucket_bits,     :int
     end
 
     class MapOpt < ::FFI::Struct
@@ -121,17 +121,12 @@ module Minigraph
         :min_map_len,      :int,
         :min_depth_len,    :int,
         :min_var_len,      :int,
-        # parameters specific to ggsimple/ggs
         :match_pen,        :int,
+        # parameters specific to ggsimple/ggs
         :ggs_shrink_pen,   :int,
         :ggs_min_end_cnt,  :int,
         :ggs_min_end_frac, :float,
         # scoring for SW check
-        :scmat,            [:int8_t, 25],
-        :gapo,             :int8_t,
-        :gape,             :int8_t,
-        :gapo2,            :int8_t,
-        :gape2,            :int8_t,
         :ggs_max_iden,     :float,
         :ggs_min_inv_iden, :float
     end
@@ -151,7 +146,7 @@ module Minigraph
     class LChain < ::FFI::BitStruct
       layout \
         :off,              :int32,
-        :fields,           :int32,
+        :cnt_inner_pre,    :int32,
         :v,                :uint32,
         :rs,               :int32,
         :re,               :int32,
@@ -161,7 +156,7 @@ module Minigraph
         :dist_pre,         :int32,
         :hash_pre,         :uint32
 
-      bit_fields :fields,
+      bit_fields :cnt_inner_pre,
                  :cnt, 31,
                  :inner_pre, 1
     end
@@ -205,10 +200,10 @@ module Minigraph
         :hash,             :uint32,
         :subsc,            :int32,
         :n_sub,            :int32,
-        :fileds,           :uint32,
+        :mapq_fit_dummy,   :uint32,
         :p,                Cigar.ptr
 
-      bit_fields :fields,
+      bit_fields :mapq_fit_dummy,
                  :mapq,   8,
                  :fit,    1,
                  :dummy,  23
@@ -216,20 +211,20 @@ module Minigraph
 
     class GChains < ::FFI::Struct
       layout \
-        :km,               :pointer,
+        :km,               :pointer, # void *km
         :n_gc,             :int32,
         :n_lc,             :int32,
         :n_a,              :int32,
         :rep_len,          :int32,
-        :gc,               :pointer, # FIXME: mg_gchain_t
-        :lc,               :pointer, # FIXME: mg_llchain_t
-        :a,                :pointer  # FIXME: mg128_t
+        :gc,               GChain.ptr,
+        :lc,               LLChain.ptr,
+        :a,                MG128.ptr
     end
 
     class TBuf < ::FFI::Struct
       layout \
-        :km,       :pointer,
-        :frag_gap, :int
+        :km,               :pointer, # void *km
+        :frag_gap,         :int
     end
   end
 end
