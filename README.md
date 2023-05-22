@@ -12,7 +12,12 @@
 
 ## Installation
 
-You need to install it from the source code. Because you need to build minigraph and create a shared library. Open your terminal and type the following commands in order. 
+```sh
+gem install ruby-minigraph
+```
+
+<details>
+<summary><b>Compiling from source</b></summary>
 
 ```sh
 git clone --recursive https://github.com/kojix2/ruby-minigraph
@@ -22,19 +27,19 @@ bundle exec rake minigraph:build
 bundle exec rake install
 ```
 
-You can run tests to see if the installation was successful. 
-
-```
-bundle exec rake test
-```
+</details>
 
 ## Quick Start
 
 ```ruby
 require "minigraph"
+
+Minigraph.execute("--version")
 ```
 
 ## APIs
+
+TODO:
 
 ## Development
 
