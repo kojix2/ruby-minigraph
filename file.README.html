@@ -68,7 +68,10 @@
 
 <h2 id="label-Installation">Installation</h2>
 
-<p>You need to install it from the source code. Because you need to build minigraph and create a shared library. Open your terminal and type the following commands in order.</p>
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_ruby'>ruby</span><span class='op'>-</span><span class='id identifier rubyid_minigraph'>minigraph</span>
+</code></pre>
+
+<p>&lt;details&gt; &lt;summary&gt;<strong>Compiling from source</strong>&lt;/summary&gt;</p>
 
 <pre class="code ruby"><code class="ruby">git clone --recursive https://github.com/kojix2/ruby-minigraph
 cd ruby-minigraph
@@ -77,17 +80,18 @@ bundle exec rake minigraph:build
 bundle exec rake install
 </code></pre>
 
-<p>You can run tests to see if the installation was successful.</p>
-
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_bundle'>bundle</span> <span class='id identifier rubyid_exec'>exec</span> <span class='id identifier rubyid_rake'>rake</span> <span class='id identifier rubyid_test'>test</span>
-</code></pre>
+<p>&lt;/details&gt;</p>
 
 <h2 id="label-Quick+Start">Quick Start</h2>
 
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>minigraph</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='const'><span class='object_link'><a href="Minigraph.html" title="Minigraph (module)">Minigraph</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'><span class='object_link'><a href="Minigraph.html#execute-class_method" title="Minigraph.execute (method)">execute</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--version</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 </code></pre>
 
 <h2 id="label-APIs">APIs</h2>
+
+<p>TODO:</p>
 
 <h2 id="label-Development">Development</h2>
 
@@ -113,7 +117,7 @@ bundle exec rake test
 </div></div>
 
       <div id="footer">
-  Generated on Sun May 21 12:39:59 2023 by
+  Generated on Mon May 22 00:52:01 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>
