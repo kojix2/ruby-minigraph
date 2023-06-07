@@ -66,5 +66,42 @@ module Minigraph
       :mg_ggen,
       [:pointer, :int32, :pointer, IdxOpt.by_ref, MapOpt.by_ref, GGOpt.by_ref, :int], # FIXME: gfa_t
       :int
+
+    attach_function \
+      :mg_idxopt_init,
+      [IdxOpt.by_ref],
+      :void
+    
+    attach_function \
+      :mg_mapopt_init,
+      [MapOpt.by_ref],
+      :void
+
+    attach_function \
+      :mg_ggopt_init,
+      [GGOpt.by_ref],
+      :void
+
+    # gfa.h
+
+    attach_function \
+      :gfa_init,
+      [:void],
+      :pointer # gfa_t *
+
+    attach_function \
+      :gfa_destroy,
+      [:pointer], # gfa_t *
+      :void
+    
+    attach_function \
+      :gfa_read,
+      [:string],
+      :pointer # gfa_t *
+
+    attach_function \
+      :gfa_print,
+      [:pointer, :pointer, :int],
+      :void
   end
 end

@@ -10,6 +10,7 @@ require_relative "minigraph/version"
 # https://github.com/lh3/minigraph
 # Li, H., Feng, X. & Chu, C. The design and construction of reference pangenome graphs
 # with minigraph. Genome Biol 21, 265 (2020). https://doi.org/10.1186
+
 module Minigraph
   class Error < StandardError; end
 

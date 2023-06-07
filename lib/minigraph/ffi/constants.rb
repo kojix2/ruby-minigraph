@@ -66,8 +66,8 @@ module Minigraph
     # indexing option
     class IdxOpt < ::FFI::Struct
       layout \
-        :k,               :int,
         :w,               :int,
+        :k,               :int,
         :bucket_bits,     :int
     end
 
