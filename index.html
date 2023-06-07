@@ -91,7 +91,33 @@ bundle exec rake install
 
 <h2 id="label-APIs">APIs</h2>
 
-<p>TODO:</p>
+<p>Only low-level functions are provided at this time.</p>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>minigraph</span><span class='tstring_end'>&quot;</span></span>
+
+<span class='const'>MG</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Minigraph.html" title="Minigraph (module)">Minigraph</a></span></span>
+
+<span class='id identifier rubyid_n_threads'>n_threads</span> <span class='op'>=</span> <span class='int'>4</span>
+
+<span class='id identifier rubyid_target'>target</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ext/minigraph/test/MT-human.fa</span><span class='tstring_end'>&quot;</span></span>
+<span class='id identifier rubyid_queries'>queries</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>ext/minigraph/test/MT-orangeA.fa</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+
+<span class='id identifier rubyid_opt'>opt</span> <span class='op'>=</span> <span class='const'>MG</span><span class='op'>::</span><span class='const'>FFI</span><span class='op'>::</span><span class='const'>MapOpt</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='id identifier rubyid_ipt'>ipt</span> <span class='op'>=</span> <span class='const'>MG</span><span class='op'>::</span><span class='const'>FFI</span><span class='op'>::</span><span class='const'>IdxOpt</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+<span class='id identifier rubyid_gpt'>gpt</span> <span class='op'>=</span> <span class='const'>MG</span><span class='op'>::</span><span class='const'>FFI</span><span class='op'>::</span><span class='const'>GGOpt</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+
+<span class='const'>MG</span><span class='op'>::</span><span class='const'>FFI</span><span class='period'>.</span><span class='id identifier rubyid_mg_opt_set'>mg_opt_set</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_ipt'>ipt</span><span class='comma'>,</span> <span class='id identifier rubyid_opt'>opt</span><span class='comma'>,</span> <span class='id identifier rubyid_gpt'>gpt</span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_g'>g</span> <span class='op'>=</span> <span class='const'>MG</span><span class='op'>::</span><span class='const'>FFI</span><span class='period'>.</span><span class='id identifier rubyid_gfa_read'>gfa_read</span><span class='lparen'>(</span><span class='id identifier rubyid_target'>target</span><span class='rparen'>)</span>
+
+<span class='id identifier rubyid_ptr'>ptr</span> <span class='op'>=</span> <span class='const'>FFI</span><span class='op'>::</span><span class='const'>MemoryPointer</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='symbol'>:pointer</span><span class='comma'>,</span> <span class='id identifier rubyid_queries'>queries</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span>
+<span class='id identifier rubyid_ptrs'>ptrs</span> <span class='op'>=</span> <span class='id identifier rubyid_queries'>queries</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lbrace'>{</span> <span class='const'>FFI</span><span class='op'>::</span><span class='const'>MemoryPointer</span><span class='period'>.</span><span class='id identifier rubyid_from_string'>from_string</span><span class='lparen'>(</span><span class='id identifier rubyid__1'>_1</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
+<span class='id identifier rubyid_ptr'>ptr</span><span class='period'>.</span><span class='id identifier rubyid_write_array_of_pointer'>write_array_of_pointer</span><span class='lparen'>(</span><span class='id identifier rubyid_ptrs'>ptrs</span><span class='rparen'>)</span>
+
+<span class='const'>MG</span><span class='op'>::</span><span class='const'>FFI</span><span class='period'>.</span><span class='id identifier rubyid_mg_map_files'>mg_map_files</span><span class='lparen'>(</span><span class='id identifier rubyid_g'>g</span><span class='comma'>,</span> <span class='int'>1</span><span class='comma'>,</span> <span class='id identifier rubyid_ptr'>ptr</span><span class='comma'>,</span> <span class='id identifier rubyid_ipt'>ipt</span><span class='comma'>,</span> <span class='id identifier rubyid_opt'>opt</span><span class='comma'>,</span> <span class='id identifier rubyid_n_threads'>n_threads</span><span class='rparen'>)</span>
+
+<span class='const'>MG</span><span class='op'>::</span><span class='const'>FFI</span><span class='period'>.</span><span class='id identifier rubyid_gfa_destroy'>gfa_destroy</span><span class='lparen'>(</span><span class='id identifier rubyid_g'>g</span><span class='rparen'>)</span>
+</code></pre>
 
 <h2 id="label-Development">Development</h2>
 
@@ -117,7 +143,7 @@ bundle exec rake test
 </div></div>
 
       <div id="footer">
-  Generated on Wed Jun  7 08:09:57 2023 by
+  Generated on Wed Jun  7 08:24:28 2023 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.34 (ruby-3.2.2).
 </div>
