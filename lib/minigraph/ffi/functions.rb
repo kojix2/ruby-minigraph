@@ -9,9 +9,21 @@ module Minigraph
 
     # options
     attach_function \
-      :mg_opt_set,
-      [:string, IdxOpt.by_ref, MapOpt.by_ref, GGOpt.by_ref],
+      :mg_opt_set_raw, :mg_opt_set,
+      [:pointer, IdxOpt.by_ref, MapOpt.by_ref, GGOpt.by_ref],
       :int
+
+    private_class_method :mg_opt_set_raw
+
+    def self.mg_opt_set(preset, io, mo, go)
+      ptr = case preset
+            when 0, nil
+              ::FFI::Pointer.new(:int, 0)
+            else
+              ::FFI::MemoryPointer.from_string(preset.to_s)
+            end
+      mg_opt_set_raw(ptr, io, mo, go)
+    end
 
     attach_function \
       :mg_opt_check,
@@ -71,7 +83,7 @@ module Minigraph
       :mg_idxopt_init,
       [IdxOpt.by_ref],
       :void
-    
+
     attach_function \
       :mg_mapopt_init,
       [MapOpt.by_ref],
@@ -93,7 +105,7 @@ module Minigraph
       :gfa_destroy,
       [:pointer], # gfa_t *
       :void
-    
+
     attach_function \
       :gfa_read,
       [:string],
@@ -101,7 +113,12 @@ module Minigraph
 
     attach_function \
       :gfa_print,
-      [:pointer, :pointer, :int],
+      %i[pointer pointer int],
+      :void
+
+    attach_function \
+      :gfa_sort_ref_arc,
+      [:pointer], # gfa_t *
       :void
   end
 end
