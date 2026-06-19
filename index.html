@@ -6,13 +6,13 @@
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.9.39
+    &mdash; Documentation by YARD 0.9.44
   
 </title>
 
-  <link rel="stylesheet" href="css/style.css" type="text/css" />
+  <link rel="stylesheet" href="css/style.css" type="text/css">
 
-  <link rel="stylesheet" href="css/common.css" type="text/css" />
+  <link rel="stylesheet" href="css/common.css" type="text/css">
 
 <script type="text/javascript">
   pathId = "README";
@@ -27,6 +27,8 @@
 
   </head>
   <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
     <div class="nav_wrap">
       <iframe id="nav" src="class_list.html?1"></iframe>
       <div id="resizer"></div>
@@ -57,42 +59,33 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>
-<h1 id="label-ruby-minigraph">ruby-minigraph</h1>
-
-<p><a href="https://badge.fury.io/rb/ruby-minigraph"><img src="https://badge.fury.io/rb/ruby-minigraph.svg" alt="Gem Version"></a> <a href="https://github.com/kojix2/ruby-minigraph/actions/workflows/ci.yml"><img src="https://github.com/kojix2/ruby-minigraph/actions/workflows/ci.yml/badge.svg" alt="test"></a> <a href="https://kojix2.github.io/ruby-minigraph/"><img src="https://img.shields.io/badge/docs-latest-blue.svg" alt="Docs Latest"></a> <a href="LICENSE.txt"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="The MIT License"></a> <a href="https://zenodo.org/badge/latestdoi/339645970"><img src="https://zenodo.org/badge/339645970.svg" alt="DOI"></a></p>
-
+      <div id="content"><div id='filecontents'><h1 id="ruby_minigraph">ruby-minigraph</h1>
+<p><a href="https://badge.fury.io/rb/ruby-minigraph"><img src="https://badge.fury.io/rb/ruby-minigraph.svg" alt="Gem Version" /></a>
+<a href="https://github.com/kojix2/ruby-minigraph/actions/workflows/ci.yml"><img src="https://github.com/kojix2/ruby-minigraph/actions/workflows/ci.yml/badge.svg" alt="test" /></a>
+<a href="https://kojix2.github.io/ruby-minigraph/"><img src="https://img.shields.io/badge/docs-latest-blue.svg" alt="Docs Latest" /></a>
+<a href="LICENSE.txt"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="The MIT License" /></a>
+<a href="https://zenodo.org/badge/latestdoi/339645970"><img src="https://zenodo.org/badge/339645970.svg" alt="DOI" /></a></p>
 <p>:curly_loop: <a href="https://github.com/lh3/minigraph">minigraph</a> - the sequence-to-graph mapper - for <a href="https://github.com/ruby/ruby">Ruby</a></p>
-
 <p>:construction: under development</p>
-
-<h2 id="label-Installation">Installation</h2>
-
-<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_install'>install</span> <span class='id identifier rubyid_ruby'>ruby</span><span class='op'>-</span><span class='id identifier rubyid_minigraph'>minigraph</span>
+<h2 id="Installation">Installation</h2>
+<pre class="code sh"><code class="sh">gem install ruby-minigraph
 </code></pre>
-
-<p>&lt;details&gt; &lt;summary&gt;<strong>Compiling from source</strong>&lt;/summary&gt;</p>
-
-<pre class="code ruby"><code class="ruby">git clone --recursive https://github.com/kojix2/ruby-minigraph
+<details>
+<summary><b>Compiling from source</b></summary>
+<pre class="code sh"><code class="sh">git clone --recursive https://github.com/kojix2/ruby-minigraph
 cd ruby-minigraph
 bundle install
 bundle exec rake minigraph:build
 bundle exec rake install
 </code></pre>
-
-<p>&lt;/details&gt;</p>
-
-<h2 id="label-Quick+Start">Quick Start</h2>
-
+</details>
+<h2 id="Quick_Start">Quick Start</h2>
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>minigraph</span><span class='tstring_end'>&quot;</span></span>
 
 <span class='const'><span class='object_link'><a href="Minigraph.html" title="Minigraph (module)">Minigraph</a></span></span><span class='period'>.</span><span class='id identifier rubyid_execute'><span class='object_link'><a href="Minigraph.html#execute-class_method" title="Minigraph.execute (method)">execute</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>--version</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
 </code></pre>
-
-<h2 id="label-APIs">APIs</h2>
-
+<h2 id="APIs">APIs</h2>
 <p>Only low-level functions are provided at this time.</p>
-
 <pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_require'>require</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>minigraph</span><span class='tstring_end'>&quot;</span></span>
 
 <span class='const'>MG</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Minigraph.html" title="Minigraph (module)">Minigraph</a></span></span>
@@ -118,10 +111,8 @@ bundle exec rake install
 
 <span class='const'>MG</span><span class='op'>::</span><span class='const'>FFI</span><span class='period'>.</span><span class='id identifier rubyid_gfa_destroy'>gfa_destroy</span><span class='lparen'>(</span><span class='id identifier rubyid_g'>g</span><span class='rparen'>)</span>
 </code></pre>
-
-<h2 id="label-Development">Development</h2>
-
-<pre class="code ruby"><code class="ruby">git clone --recursive https://github.com/kojix2/ruby-minigraph
+<h2 id="Development">Development</h2>
+<pre class="code sh"><code class="sh">git clone --recursive https://github.com/kojix2/ruby-minigraph
 # git clone https://github.com/kojix2/ruby-minigraph
 # cd ruby-minigraph
 # git submodule update -i
@@ -130,22 +121,18 @@ bundle install
 bundle exec rake minigraph:build
 bundle exec rake test
 </code></pre>
-
-<h2 id="label-Contributing">Contributing</h2>
-
-<p>ruby-minigraph is a library under development and there are many points to be improved. If you improve the source code, please feel free to send us your pull request. Typo corrections are also welcome.</p>
-
-<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/kojix2/ruby-minigraph">github.com/kojix2/ruby-minigraph</a>.</p>
-
-<h2 id="label-License">License</h2>
-
-<p><a href="https://opensource.org/licenses/MIT">MIT License</a>.</p>
-</div></div>
+<h2 id="Contributing">Contributing</h2>
+<p>ruby-minigraph is a library under development and there are many points to be improved.
+If you improve the source code, please feel free to send us your pull request.
+Typo corrections are also welcome.</p>
+<p>Bug reports and pull requests are welcome on GitHub at <a href="https://github.com/kojix2/ruby-minigraph">https://github.com/kojix2/ruby-minigraph</a>.</p>
+<h2 id="License">License</h2>
+<p><a href="https://opensource.org/licenses/MIT">MIT License</a>.</p></div></div>
 
       <div id="footer">
-  Generated on Sun Apr 12 05:39:39 2026 by
+  Generated on Fri Jun 19 00:29:07 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.39 (ruby-4.0.2).
+  0.9.44 (ruby-4.0.5).
 </div>
 
     </div>
